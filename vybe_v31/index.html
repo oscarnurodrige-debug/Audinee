@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="description" content="Audinee: descubre y escucha música." />
+  <title>Audinee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Audinee, inicio">Audinee</a>
+      <nav class="side-nav">
+        <button class="nav-link active" data-view="home">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg>Inicio
+        </button>
+        <button class="nav-link" data-view="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>Buscar
+        </button>
+        <button class="nav-link" data-view="library">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4v16M10 4v16M15 5l4 15"/></svg>Biblioteca
+        </button>
+        <button class="nav-link" data-view="favorites">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.600-7 10-7 10z"/></svg>Favoritos
+        </button>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="mobile-brand">Audinee</div>
+        <div class="top-arrows"><button aria-label="Atrás">‹</button><button aria-label="Adelante">›</button></div>
+        <div class="profile"><span class="profile-avatar">Y</span><span>Mi espacio</span></div>
+      </header>
+
+      <section class="view active-view" id="home-view">
+        <div class="hero">
+          <div class="hero-copy">
+            <h1>Encuentra tu propio ritmo</h1>
+            <p>Busca canciones, artistas y vídeos. Guarda lo que te gusta y vuelve a ello cuando quieras.</p>
+            <div class="hero-actions">
+              <button class="primary-btn" id="explore-btn">Explorar música</button>
+              <button class="install-btn" id="install-btn" hidden>Instalar la app</button>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-disc"><div class="disc-center"></div></div>
+          </div>
+        </div>
+
+        <div class="section-heading"><h2>Selecciones</h2><button class="text-btn" data-go="search">Ver todo</button></div>
+        <div class="quick-grid">
+          <button class="quick-card" data-query="lofi hip hop"><b>Concentración</b><small>Lo-fi para trabajar o estudiar</small></button>
+          <button class="quick-card" data-query="indie pop"><b>Indie</b><small>Pop alternativo y nuevos artistas</small></button>
+          <button class="quick-card" data-query="chill electronic"><b>Electrónica suave</b><small>Para la noche y para relajarse</small></button>
+          <button class="quick-card" data-query="pop hits 2026"><b>Éxitos actuales</b><small>Lo que más suena ahora</small></button>
+        </div>
+
+        <div class="section-heading search-results-heading"><h2>Recomendado</h2></div>
+        <div class="track-grid" id="home-results">
+          <div class="empty-state"><span class="loader"></span><p>Cargando recomendaciones…</p></div>
+        </div>
+      </section>
+
+      <section class="view" id="search-view">
+        <div class="page-intro"><h1>Buscar</h1></div>
+        <form class="search-form" id="search-form">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+          <input id="search-input" type="search" placeholder="Canciones, artistas, vídeos" autocomplete="off">
+          <button type="submit">Buscar</button>
+        </form>
+        <!-- FILTROS MUSICALES AUDINEE -->
+        <div class="music-filters">
+          <button class="filter-chip active" data-filter="all">
+            Todo
+          </button>
+
+          <button class="filter-chip" data-filter="music">
+            Música
+          </button>
+
+          <button class="filter-chip" data-filter="videos">
+            Videoclips
+          </button>
+
+          <button class="filter-chip" data-filter="remix">
+            Remixes
+          </button>
+
+          <button class="filter-chip" data-filter="live">
+            Directos
+          </button>
+
+          <label class="shorts-toggle">
+            <input type="checkbox" id="hide-shorts" checked>
+            <span>Ocultar Shorts</span>
+          </label>
+        </div>
+        <h2 class="result-label" id="result-label">Géneros</h2>
+        <div class="track-grid" id="search-results">
+          <button class="genre-card" data-query="pop hits">Pop</button>
+          <button class="genre-card" data-query="indie">Indie</button>
+          <button class="genre-card" data-query="electronic dance">Electrónica</button>
+          <button class="genre-card" data-query="hip hop">Hip-hop</button>
+          <button class="genre-card" data-query="rock classics">Rock</button>
+          <button class="genre-card" data-query="rnb soul">R&amp;B y soul</button>
+        </div>
+      </section>
+
+      <section class="view" id="library-view">
+        <div class="page-intro"><h1>Biblioteca</h1><p>Todo lo que has guardado.</p></div>
+        <div class="library-tabs"><button class="tab active" data-library="all">Todo</button><button class="tab" data-library="favorites">Favoritos</button></div>
+        <div class="track-list" id="library-results"></div>
+      </section>
+
+      <section class="view" id="favorites-view">
+        <div class="page-intro"><h1>Favoritos</h1><p>Las canciones a las que vuelves.</p></div>
+        <div class="track-list" id="favorites-results"></div>
+      </section>
+    </main>
+
+    <footer class="player-bar">
+      <div class="now-playing">
+        <div class="mini-cover" id="current-thumb"><span>♫</span></div>
+        <div class="now-text"><b id="current-title">Elige una canción</b><small id="current-channel">Nada en reproducción</small></div>
+        <button class="heart-btn" id="current-favorite" aria-label="Añadir a favoritos">♡</button>
+      </div>
+      <div class="player-center">
+        <div class="player-controls"><button aria-label="Anterior" id="prev-btn">|◀</button><button class="play-btn" id="play-btn" aria-label="Reproducir">▶</button><button aria-label="Siguiente" id="next-btn">▶|</button></div>
+        <div class="progress-row"><span id="current-time">0:00</span><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><span id="duration">--:--</span></div>
+      </div>
+      <div class="player-extra"><span>♫</span><div class="volume-track"><div></div></div></div>
+    </footer>
+  </div>
+
+  <div class="mobile-nav">
+    <button class="active" data-view="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg>Inicio</button>
+    <button data-view="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>Buscar</button>
+    <button data-view="library"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4v16M10 4v16M15 5l4 15"/></svg>Biblioteca</button>
+  </div>
+
+  <div class="player-modal" id="player-modal" aria-hidden="true">
+    <div class="modal-top">
+      <button id="close-player" aria-label="Cerrar">↓</button>
+      <span>Reproduciendo en Audinee</span>
+      <button id="modal-favorite" aria-label="Favorito">♡</button>
+    </div>
+
+    <div class="modal-cover" id="modal-cover">
+      <span>♫</span>
+    </div>
+    <audio id="audio-player" preload="none"></audio>
+    <div class="modal-track"><h2 id="modal-title">Elige una canción</h2><p id="modal-channel">Audinee</p></div>
+    <p class="modal-hint" id="playback-status">La reproducción se realiza mediante el reproductor oficial de YouTube.</p>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
